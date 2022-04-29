@@ -38,7 +38,7 @@ if __name__ == '__main__':
         torch.cuda.manual_seed(args.seed)
 
     # path to your data
-    args.data = '/medias/speech/projects/ge/Data/ASV2019/LA'
+    args.data = '/path/to/your/LA'
 
     protocols = {
                 'train_protocol': args.data + '/ASVspoof2019.LA.cm.train.trn_A04.txt',
