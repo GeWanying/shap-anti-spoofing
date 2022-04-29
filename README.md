@@ -7,7 +7,7 @@ It is also related to our previous work [Explaining deep learning models for spo
 ```
 pip install -r requirements.txt
 ```
-Codes were tested with python==3.8.8 and CUDA Version==11.2
+Codes were tested with python==3.8.8, CUDA Version==11.2 and MATLAB R2020a.
 
 ### Dataset
 The ASVspoof 2019 database can be downloaded from [here](https://datashare.ed.ac.uk/handle/10283/3336)
