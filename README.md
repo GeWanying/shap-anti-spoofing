@@ -53,7 +53,7 @@ If you find this repository useful, please consider citing:
   author={Wanying Ge and Massimiliano Todisco and Nicholas Evans},
   title={{Explainable deepfake and spoofing detection: an attack analysis using SHapley Additive exPlanations}},
   year=2022,
-  booktitle={The Speaker and Language Recognition Workshop (To appear)},,
+  booktitle={The Speaker and Language Recognition Workshop (To appear)},
 }
 ```
 and
@@ -62,7 +62,7 @@ and
   author={Wanying Ge and Jose Patino and Massimiliano Todisco and Nicholas Evans},
   title={{Explaining deep learning models for spoofing and deepfake detection with SHapley Additive exPlanations}},
   year=2022,
-  booktitle={ICASSP 2022 (To appear)},,
+  booktitle={ICASSP 2022 (To appear)},
 }
 ```
 #### Acknowledgement
