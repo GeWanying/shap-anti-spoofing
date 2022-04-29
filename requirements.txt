@@ -1,0 +1,13 @@
+captum==0.4.0
+scipy==1.6.2
+prettytable==2.1.0
+matplotlib==3.3.4
+tqdm==4.60.0
+torchvision==0.9.1
+torchaudio==0.8.0a0+e4e171a
+torch==1.8.1
+numpy==1.19.5
+librosa==0.8.0
+ipdb==0.13.9
+Pillow==9.1.0
+scikit_learn==1.0.2

@@ -1,0 +1,78 @@
+clear all
+clf
+
+addr = "1D-examples/";
+
+
+
+d = dir(addr);
+
+idx =  4  ;
+
+
+d(idx).name
+name = addr + d(idx).name;
+file_name = d(idx).name;
+
+id = file_name(6:end-4);
+
+a = load(name);
+s_0 = squeeze(a.shap_0);
+s_1 = squeeze(a.shap_1);
+
+r = squeeze(a.feature);
+% sound(r, 16000)
+
+s_0 = bigger_than_0(s_0);
+s_1 = bigger_than_0(s_1);
+
+
+percentage =      0.998 ;
+
+
+
+s_0 = bigger_than_percentage(s_0, percentage);
+s_1 = bigger_than_percentage(s_1, percentage);
+
+
+
+
+s =    0     ;
+diff =      length(s_1)      ;
+% s =    1.345*16000     ;
+% diff =      320      ;
+
+% s =    1.095 * 16000    ;
+% diff =      210      ;
+co =    180  ;
+% 
+plot(r, '-', 'LineWidth', 1.5, 'Color',[co co co]/256)
+xlim([1 length(s_0)])
+
+plot_waveform_and_spoof_shap(r, s_0, s_1, s, s + diff);
+xticks([1 16000*0.5 16000*1 16000*1.5 16000*2 16000*2.5 16000*3 16000*3.5 16000*4 16000*4.5 16000*5 16000*5.5 16000*6])
+xticklabels({'0' '0.5', '1.0', '1.5', '2.0', '2.5', '3.0', '3.5', '4.0', '4.5', '5.0', '5.5', '6.0' })
+% xticks([1.095*16000 1.095*16000+80 1.095*16000+160 1.110*16000+240 1.115*16000+320 1.345*16000+400])
+% xticklabels({'1.095' '1.1', '1.105', '1.11', '1.365' , '1.37'})
+
+% yticks([-3 -2 -1 0 1 2 3])
+% yticklabels({'3' '2' '1' '0', '1' '2' '3'})
+% ylim([-3 3])
+% yticks([-5 0 5])
+% yticklabels({ '5' '0', '5'})
+
+
+% xticks([0 80 0*16000+160 0*16000+240 0*16000+320])
+% xticklabels({'0' '0.005', '0.01', '0.015', '0.02'})
+
+% xticks([1.11*16000 1.11*16000+80 1.11*16000+160 1.11*16000+240 1.11*16000+320])
+% xticklabels({'1.11' '1.115', '1.12', '1.125', '1.13' , '1.135'})
+
+xlabel('Time (s)')
+ylabel('Amplitude')
+% ylabel('SHAP value')
+
+set(gca,'TickDir','out');
+set(gca,'box','off')
+fsize=18;
+set(gca,'FontSize', fsize, 'FontName', 'Times', 'LineWidth', 1.3)
