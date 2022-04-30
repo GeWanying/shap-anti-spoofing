@@ -37,14 +37,14 @@ You can either calculate SHAP values based on 1D-waveform input or 2D-spec input
 ```
 python save.py --model=pre-trained-models/A04.pth --comment=A04
 ```
-The obtained SHAP values will be saved in `'.mat'` format under `'A04-mats/'`. If you wish to calculate SHAP values for A05 attack, first change the corresponding protocol in `train_protocol` in the code, then run the command with the replaced attack type.
+The obtained SHAP values will be saved in `<AUDIO_ID>.mat` format under `'A04-mats/'`. If you wish to calculate SHAP values for A05 attack, first change the corresponding protocol in `train_protocol` in the code, then run the command with the replaced attack type.
 
 #### Train your own models
 For both models, run:
 ```
 python train.py
 ```
-Variable length input is used by default, use `'--fix'` to use fixed 6s length input. Also, please notice the `train_protocol` defined in the code if you want to train the model based on any particular attack. The corresponding protocols are uploaded in `'protocols/'`.
+Variable length input is used by default, use `--fix` to use fixed 6s length input. Also, please notice the `train_protocol` defined in the code if you want to train the model based on any particular attack. The corresponding protocols are uploaded in `'protocols/'`.
 
 #### Citation
 If you find this repository useful, please consider citing:
