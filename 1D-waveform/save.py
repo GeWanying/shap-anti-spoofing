@@ -99,6 +99,6 @@ if __name__ == '__main__':
         savemat(name, mdic)
 
         # only save part of the database for analysis,
-        # uncomment below if you want to save SHAP values for all the audio files in the protocol
+        # comment below if you want to save SHAP values for all the audio files in the protocol
         if step > 100:
             break
