@@ -4,7 +4,6 @@ import os
 from torch.utils.data.dataloader import DataLoader
 import numpy as np
 import torch.nn.functional as F
-import matplotlib.pyplot as plt
 from tqdm import tqdm
 import numpy as np
 from ASVRawDataset import ASVRawDataset
