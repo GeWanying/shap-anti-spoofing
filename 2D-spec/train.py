@@ -57,8 +57,7 @@ if __name__ == '__main__':
     if not os.path.exists(model_save_path):
         os.mkdir(model_save_path)
 
-    # args.data = '/path/to/your/LA'
-    args.data = '/medias/speech/projects/ge/Data/ASV2019/LA'
+    args.data = '/path/to/your/LA'
 
     protocols = {'train_protocol': args.data + '/ASVspoof2019.LA.cm.train.trn_A04.txt',
                 'dev_protocol': args.data + '/ASVspoof2019.LA.cm.dev.trl_A04.txt',
