@@ -28,7 +28,6 @@ The extracted data should be orginased as:
    * ASVspoof2019.LA.cm.train.trn.txt
    * ASVspoof2019.LA.cm.train.trn_A01.txt (uploaded in protocols/)
    * ASVspoof2019.LA.cm.train.trn_A02.txt (uploaded in protocols/)
-   * ASVspoof2019.LA.cm.eval.trl.txt (provided in the database)
    * ...
 
 Please change the `args.data` defined in train/save.py to `'/path/to/your/LA'`.
