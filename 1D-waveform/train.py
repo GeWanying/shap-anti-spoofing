@@ -3,7 +3,7 @@ from torch.utils.data.dataloader import DataLoader
 import torch.nn.functional as F
 import torch.optim as optim
 import models
-from test import asv_cal_accuracies, cal_roc_eer, asv_cal_socres
+from test import cal_roc_eer, asv_cal_socres
 import os
 import sys
 import time

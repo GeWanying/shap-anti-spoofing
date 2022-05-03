@@ -8,7 +8,6 @@ from tqdm import tqdm
 import numpy as np
 from ASVRawDataset import ASVRawDataset
 from pathlib import Path
-import librosa
 from scipy.io import savemat
 from captum.attr import GradientShap, IntegratedGradients
 

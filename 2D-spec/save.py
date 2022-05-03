@@ -3,12 +3,10 @@ import argparse
 import os
 from torch.utils.data.dataloader import DataLoader
 import numpy as np
-import torch.nn.functional as F
 from tqdm import tqdm
 import numpy as np
 from ASVRawDataset import ASVRawDataset
 from pathlib import Path
-import librosa
 from scipy.io import savemat
 from captum.attr import GradientShap, IntegratedGradients
 from frontend import Spectrogram
@@ -37,7 +35,7 @@ if __name__ == '__main__':
         torch.cuda.manual_seed(args.seed)
 
     # path to your data
-    args.data = '/path/to/your/LA'
+    args.data = '/medias/speech/projects/ge/Data/ASV2019/LA'
 
     protocols = {
                 'train_protocol': args.data + '/ASVspoof2019.LA.cm.train.trn_A04.txt',

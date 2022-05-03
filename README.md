@@ -4,10 +4,16 @@ This repository includes the code to reproduce our paper [Explainable deepfake a
 It is also related to our previous work [Explaining deep learning models for spoofing and deepfake detection with SHapley Additive exPlanations](https://arxiv.org/pdf/2110.03309.pdf) accepeted in ICASSP 2022.
 
 ### Dependencies
+Codes were tested using a GeForce RTX 3090 GPU with CUDA Version==11.2:
+```
+conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=11.1 -c pytorch -c conda-forge
+
+```
+Then:
 ```
 pip install -r requirements.txt
 ```
-Codes were tested with python==3.8.8, CUDA Version==11.2 and MATLAB R2020a.
+We also used MATLAB R2020a for plotting.
 
 ### Dataset
 The ASVspoof 2019 database can be downloaded from [here](https://datashare.ed.ac.uk/handle/10283/3336)
