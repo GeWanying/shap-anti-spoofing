@@ -1,13 +1,11 @@
 import torch
 from torch.utils.data.dataloader import DataLoader
-# from data import PrepASV15Dataset, PrepASV19Dataset
 import models
 import torch.nn.functional as F
-# import matplotlib.pyplot as plt
-# from ASVRawDataset import ASVRawDataset
+import matplotlib.pyplot as plt
+from ASVRawDataset import ASVRawDataset
 import os
-
-
+from pathlib import Path
 
 def asv_cal_accuracies(test_loader, net, device):
     net = net.to(device)
@@ -16,10 +14,7 @@ def asv_cal_accuracies(test_loader, net, device):
         softmax_acc = 0
         num_files = 0
         probs = torch.empty(0, 3).to(device)
-
-
-        # test_loader = DataLoader(test_loader, batch_size=64, shuffle=False, num_workers=4)
-
+        
         for test_batch in test_loader:
             # load batch and infer
             test_sample, _, _, test_label = test_batch
@@ -56,8 +51,6 @@ def asv_cal_socres(test_loader, net, device, comment, epoch):
         key_list = []
         score_list = []
 
-        # test_loader = DataLoader(test_set, batch_size=64, shuffle=False, num_workers=4)
-
         for step, test_batch in enumerate(test_loader):
             # load batch and infer
             test_sample, file_name, attack_id, test_label = test_batch
@@ -92,7 +85,6 @@ def asv_cal_socres(test_loader, net, device, comment, epoch):
 
         softmax_acc = softmax_acc / num_files
     return softmax_acc, probs.to('cpu')
-
 
 def cal_roc_eer(probs, show_plot=True):
     """
@@ -140,31 +132,31 @@ def cal_roc_eer(probs, show_plot=True):
 
     return out_eer
 
-
 if __name__ == '__main__':
 
     test_device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-    protocol_file_path = 'F:/ASVSpoof2019/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.dev.trl.txt'
-    data_path = 'F:/ASVSpoof2019/LA/data/dev_6/'
+    data_path = '/path/to/your/LA'
 
-   # 'F:/ASVSpoof2019/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.train.trn.txt'
-   # 'F:/ASVSpoof2019/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.dev.trl.txt'
-   # 'F:/ASVSpoof2019/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.eval.trl.txt'
-
-    # protocol_file_path = 'F:/ASVspoof2015/CM_protocol/cm_develop.ndx.txt'
-    # # cm_train.trn
-    # # cm_develop.ndx
-    # # cm_evaluation.ndx
-    # data_path = 'F:/ASVspoof2015/data/dev_6/'
+    protocols = {'train_protocol': data_path + '/ASVspoof2019.LA.cm.train.trn_A04.txt',
+                'dev_protocol': data_path + '/ASVspoof2019.LA.cm.dev.trl_A04.txt',
+                'eval_protocol': data_path + '/ASVspoof2019.LA.cm.eval.trl.txt',
+    }
+    eval_dataset = ASVRawDataset(Path(data_path), 'eval', protocols['eval_protocol'], is_rand=False)
+    eval_loader = DataLoader(
+            dataset=eval_dataset,
+            batch_size=20,
+            num_workers=0,
+            shuffle=False,
+        )
 
     Net = models.SSDNet1D()
     num_total_learnable_params = sum(i.numel() for i in Net.parameters() if i.requires_grad)
     print('Number of learnable params: {}.'.format(num_total_learnable_params))
 
-    check_point = torch.load('./trained_models/***.pth')
+    check_point = torch.load('./pre-trained-models/A01.pth')
     Net.load_state_dict(check_point['model_state_dict'])
 
-    accuracy, probabilities = asv_cal_accuracies(protocol_file_path, data_path, Net, test_device, data_type='time_frame', dataset=19)
+    accuracy, probabilities = asv_cal_accuracies(eval_loader, Net, test_device)
     print(accuracy * 100)
 
     eer = cal_roc_eer(probabilities)
