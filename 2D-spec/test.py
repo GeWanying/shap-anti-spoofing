@@ -7,9 +7,6 @@ from ASVRawDataset import ASVRawDataset
 import os
 from pathlib import Path
 
-
-
-
 def asv_cal_accuracies(test_loader, net, device):
     net = net.to(device)
     net.eval()
@@ -17,10 +14,7 @@ def asv_cal_accuracies(test_loader, net, device):
         softmax_acc = 0
         num_files = 0
         probs = torch.empty(0, 3).to(device)
-
-
-        # test_loader = DataLoader(test_loader, batch_size=64, shuffle=False, num_workers=4)
-
+        
         for test_batch in test_loader:
             # load batch and infer
             test_sample, _, _, test_label = test_batch
@@ -57,8 +51,6 @@ def asv_cal_socres(test_loader, net, device, comment, epoch):
         key_list = []
         score_list = []
 
-        # test_loader = DataLoader(test_set, batch_size=64, shuffle=False, num_workers=4)
-
         for step, test_batch in enumerate(test_loader):
             # load batch and infer
             test_sample, file_name, attack_id, test_label = test_batch
@@ -93,7 +85,6 @@ def asv_cal_socres(test_loader, net, device, comment, epoch):
 
         softmax_acc = softmax_acc / num_files
     return softmax_acc, probs.to('cpu')
-
 
 def cal_roc_eer(probs, show_plot=True):
     """
@@ -140,7 +131,6 @@ def cal_roc_eer(probs, show_plot=True):
         plt.show()
 
     return out_eer
-
 
 if __name__ == '__main__':
 
